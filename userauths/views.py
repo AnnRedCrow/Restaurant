@@ -34,3 +34,7 @@ def login_view(request):
     else:
         form = UserLoginForm()
     return render(request, 'userauths/login.html', {"form": form})
+
+
+def show_profile(request):
+    return render(request, 'userauths/profile.html')
