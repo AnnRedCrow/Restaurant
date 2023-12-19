@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
-from userauths.forms import UserRegisterForm
+from userauths.forms import UserRegisterForm, UserLoginForm
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 
 
 def register_view(request):
-
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -23,3 +22,15 @@ def register_view(request):
         'form': form,
     }
     return render(request, "userauths/sign-up.html", context)
+
+
+def login_view(request):
+    if request.method == 'POST':
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('core:home')
+    else:
+        form = UserLoginForm()
+    return render(request, 'userauths/login.html', {"form": form})

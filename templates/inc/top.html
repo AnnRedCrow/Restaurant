@@ -1,0 +1,18 @@
+<div class="main-navbar">
+    <!-- menu for a mobile version of the website -->
+    <ion-icon class="menu-toggle" name="menu-outline"></ion-icon>
+
+    <div class="search">
+        <input type="text" placeholder="What would you like to eat?">
+        <button class="search-btn">Поиск</button>
+    </div>
+
+    <div class="profile">
+        <a class="cart" href="#">
+            <ion-icon name="cart-outline"></ion-icon>
+        </a>
+        <a class="user" href="{% url "userauths:login" %}">
+            <ion-icon name="person-outline"></ion-icon>
+        </a>
+    </div>
+</div>

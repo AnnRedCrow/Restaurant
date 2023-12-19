@@ -269,6 +269,7 @@ body {
     background-color: var(--softGreenColor);
     color: var(--primaryColor);
     border-radius: 8px;
+    margin-top: 5px;
 }
 
 .filter-card:hover {

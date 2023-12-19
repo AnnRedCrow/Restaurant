@@ -2,17 +2,15 @@
 
 {% block content %}
     <div class="main">
-        <h1>Регистрация</h1>
-
-        <a href="{% url "userauths:login" %}">У меня есть аккаунт</a>
-
+        <h1>Вход</h1>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-primary">
-                Зарегистрироваться
+                Войти
             </button>
         </form>
+        <a href="{% url "userauths:sign-up" %}">У меня нет аккаунта</a>
     </div>
 
 {% endblock content %}
