@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
+    # 'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # custom apps
     'core',
+    'userauths',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,5 @@ JAZZMIN_SETTINGS = {
     "site_title": "Restaurant Admin",
     "site_brand": "FELICITA",
 }
+
+AUTH_USER_MODEL = "userauths.User"
