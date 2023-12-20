@@ -60,7 +60,6 @@
                 </div>
             </div>
             <div class="filter-wrapper">
-
                 <div class="filter-card">
                     <div class="filter-icon">
                         <ion-icon name="restaurant-outline"></ion-icon>
@@ -68,54 +67,68 @@
                     <p>All Menus</p>
                 </div>
 
-                <div class="filter-card">
-                    <div class="filter-icon">
-                        <ion-icon name="fast-food-outline"></ion-icon>
-                    </div>
-                    <p>Burger</p>
-                </div>
+                {% for c in categories %}
 
-                <div class="filter-card">
-                    <div class="filter-icon">
-                        <ion-icon name="pizza-outline"></ion-icon>
+                    <div class="filter-card">
+{#                        <a href="{% url 'category' item.pk %}">#}
+                            <div class="filter-icon">
+                                <img src="{{ c.image.url }}" alt="Картинка не найдена">
+                                {#                        <ion-icon name="restaurant-outline"></ion-icon>#}
+                            </div>
+                            <p>{{ c.title }}</p>
+{#                        </a>#}
                     </div>
-                    <p>Pizza</p>
-                </div>
 
-                <div class="filter-card">
-                    <div class="filter-icon">
-                        <ion-icon name="wine-outline"></ion-icon>
-                    </div>
-                    <p>Wine</p>
-                </div>
+                {% endfor %}
 
-                <div class="filter-card">
-                    <div class="filter-icon">
-                        <ion-icon name="ice-cream-outline"></ion-icon>
-                    </div>
-                    <p>Ice-cream</p>
-                </div>
-
-                <div class="filter-card">
-                    <div class="filter-icon">
-                        <ion-icon name="cafe-outline"></ion-icon>
-                    </div>
-                    <p>Coffee</p>
-                </div>
-
-                <div class="filter-card">
-                    <div class="filter-icon">
-                        <ion-icon name="fish-outline"></ion-icon>
-                    </div>
-                    <p>Seafood</p>
-                </div>
-
-                <div class="filter-card">
-                    <div class="filter-icon">
-                        <ion-icon name="nutrition-outline"></ion-icon>
-                    </div>
-                    <p>Healthy Food</p>
-                </div>
+{#                <div class="filter-card">#}
+{#                    <div class="filter-icon">#}
+{#                        <ion-icon name="fast-food-outline"></ion-icon>#}
+{#                    </div>#}
+{#                    <p>Burger</p>#}
+{#                </div>#}
+{##}
+{#                <div class="filter-card">#}
+{#                    <div class="filter-icon">#}
+{#                        <ion-icon name="pizza-outline"></ion-icon>#}
+{#                    </div>#}
+{#                    <p>Pizza</p>#}
+{#                </div>#}
+{##}
+{#                <div class="filter-card">#}
+{#                    <div class="filter-icon">#}
+{#                        <ion-icon name="wine-outline"></ion-icon>#}
+{#                    </div>#}
+{#                    <p>Wine</p>#}
+{#                </div>#}
+{##}
+{#                <div class="filter-card">#}
+{#                    <div class="filter-icon">#}
+{#                        <ion-icon name="ice-cream-outline"></ion-icon>#}
+{#                    </div>#}
+{#                    <p>Ice-cream</p>#}
+{#                </div>#}
+{##}
+{#                <div class="filter-card">#}
+{#                    <div class="filter-icon">#}
+{#                        <ion-icon name="cafe-outline"></ion-icon>#}
+{#                    </div>#}
+{#                    <p>Coffee</p>#}
+{#                </div>#}
+{##}
+{#                <div class="filter-card">#}
+{#                    <div class="filter-icon">#}
+{#                        <ion-icon name="fish-outline"></ion-icon>#}
+{#                    </div>#}
+{#                    <p>Seafood</p>#}
+{#                </div>#}
+{##}
+{#                <div class="filter-card">#}
+{#                    <div class="filter-icon">#}
+{#                        <ion-icon name="nutrition-outline"></ion-icon>#}
+{#                    </div>#}
+{#                    <p>Healthy Food</p>#}
+{#                </div>#}
 
             </div>
         </div>
@@ -125,77 +138,19 @@
         <div class="main-detail">
             <h2 class="main-title">Choose Order</h2>
             <div class="detail-wrapper">
+                {% for d in dishes %}
                 <div class="detail-card">
-                    <img src="#" class="detail-img">
+                    <img src="{{d.photo.url}}" class="detail-img">
                     <div class="detail-desc">
                         <div class="detail-name">
-                            <h4>Shrimp Soup</h4>
-                            <p class="detail-sub">Lorem ipsum dolor sit amet consectetur provident</p>
-                            <p class="price">$152.2</p>
+                            <h4>{{ d.title }}</h4>
+                            <p class="detail-sub">{{ d.description }}</p>
+                            <p class="price">${{ d.price }}</p>
                         </div>
                         <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
                     </div>
                 </div>
-
-                <div class="detail-card">
-                    <img src="#" class="detail-img">
-                    <div class="detail-desc">
-                        <div class="detail-name">
-                            <h4>Shrimp Soup</h4>
-                            <p class="detail-sub">Lorem ipsum dolor sit amet consectetur provident</p>
-                            <p class="price">$152.2</p>
-                        </div>
-                        <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="detail-card">
-                    <img src="#" class="detail-img">
-                    <div class="detail-desc">
-                        <div class="detail-name">
-                            <h4>Pizza</h4>
-                            <p class="detail-sub">Lorem ipsum dolor sit amet consectetur provident</p>
-                            <p class="price">$15.2</p>
-                        </div>
-                        <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="detail-card">
-                    <img src="#" class="detail-img">
-                    <div class="detail-desc">
-                        <div class="detail-name">
-                            <h4>Pizza</h4>
-                            <p class="detail-sub">Lorem ipsum dolor sit amet consectetur provident</p>
-                            <p class="price">$15.2</p>
-                        </div>
-                        <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="detail-card">
-                    <img src="#" class="detail-img">
-                    <div class="detail-desc">
-                        <div class="detail-name">
-                            <h4>Pizza</h4>
-                            <p class="detail-sub">Lorem ipsum dolor sit amet consectetur provident</p>
-                            <p class="price">$15.2</p>
-                        </div>
-                        <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="detail-card">
-                    <img src="#" class="detail-img">
-                    <div class="detail-desc">
-                        <div class="detail-name">
-                            <h4>Pizza</h4>
-                            <p class="detail-sub">Lorem ipsum dolor sit amet consectetur provident</p>
-                            <p class="price">$15.2</p>
-                        </div>
-                        <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

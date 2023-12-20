@@ -34,6 +34,7 @@ class Dish(models.Model):
     dish_id = ShortUUIDField(unique=True, length=10, max_length=15, prefix="dish", alphabet="abcdef1234")
     title = models.CharField(max_length=150, verbose_name='Наименование')
     description = models.TextField(blank=True, verbose_name='Описание')
+    amount = models.CharField(max_length=50, verbose_name='Вес или размер')
     photo = models.ImageField(upload_to='menu_items', verbose_name='Фото', blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
