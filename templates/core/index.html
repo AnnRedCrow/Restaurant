@@ -97,9 +97,18 @@
                         <div class="detail-name">
                             <h4>{{ d.title }}</h4>
                             <p class="detail-sub">{{ d.description }}</p>
-                            <p class="price">${{ d.price }}</p>
+                            <p class="price current-dish-price-{{ d.id }}">{{ d.price }}</p>
                         </div>
-                        <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+
+                        <div class="add-cart">
+                            <input type="hidden" value="1" name="" id="dish-quantity" class="dish-quantity-{{ d.id }}">
+                            <input type="hidden" class="dish-did-{{ d.id }}" value="{{ d.dish_id }}">
+                            <input type="hidden" class="dish-id-{{ d.id }}" value="{{ d.id }}">
+                            <input type="hidden" class="dish-photo-{{ d.id }}" value="{{ d.photo.url }}">
+                            <input type="hidden" class="dish-title-{{ d.id }}" value="{{ d.title }}">
+                            <button href="cart.html" data-index="{{ d.id }}" class="btn btn-primary add add-to-cart-btn" id="add-to-cart-btn">Добавить</button>
+                        </div>
+
                     </div>
                 </div>
                 {% endfor %}

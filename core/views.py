@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from core.models import *
 from django.shortcuts import render
 
@@ -42,3 +42,30 @@ def dishes_list_category_view(request, cid):
     }
 
     return render(request, "core/category-dishes-list.html", context)
+
+
+def add_to_cart(request):
+    cart_dish = {}
+
+    cart_dish[str(request.GET['id'])] = {
+        'title': request.GET['title'],
+        'qty': request.GET['qty'],
+        'price': request.GET['price'],
+        'photo': request.GET['photo'],
+        'dish_id': request.GET['dish_id'],
+    }
+
+    if 'cart-data-obj' in request.session:
+        if str(request.GET['id']) in request.session['cart-data-obj']:
+            cart_data = request.session['cart_data_obj']
+            cart_data[str(request.GET['id'])]['qty'] = int(cart_dish[str(request.GET['id'])]['qty'])
+            cart_data.update(cart_data)
+            request.session['cart_data_obj'] = cart_data
+        else:
+            cart_data = request.session['cart_data_obj']
+            cart_data.update(cart_dish)
+            request.session['cart_data_obj'] = cart_data
+    else:
+        request.session['cart_data_obj'] = cart_dish
+    return JsonResponse({"data": request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj'])})
+
