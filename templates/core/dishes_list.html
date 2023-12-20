@@ -1,0 +1,24 @@
+{% extends "partials/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="main">
+        <div class="main-detail">
+            <h2 class="main-title">Меню</h2>
+            <div class="detail-wrapper">
+                {% for d in dishes %}
+                    <div class="detail-card">
+                        <img src="{{ d.photo.url }}" class="detail-img">
+                        <div class="detail-desc">
+                            <div class="detail-name">
+                                <h4>{{ d.title }}</h4>
+                                <p class="detail-sub">{{ d.description }}</p>
+                                <p class="price">${{ d.price }}</p>
+                            </div>
+                            <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

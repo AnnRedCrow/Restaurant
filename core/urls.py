@@ -5,5 +5,7 @@ app_name = "core"
 
 urlpatterns = [
     path("", index, name="home"),
-    path("category/", category_list_view, name="category_list"),
+    path("dishes/", dishes_list_view, name="dishes_list"),
+    path("category/", index, name="category_list"),
+    path("category/<cid>", dishes_list_category_view, name="category-dishes-list")
 ]
