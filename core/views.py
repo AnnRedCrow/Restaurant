@@ -1,6 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from core.models import *
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 
 
 def index(request):
@@ -55,17 +56,41 @@ def add_to_cart(request):
         'dish_id': request.GET['dish_id'],
     }
 
-    if 'cart-data-obj' in request.session:
-        if str(request.GET['id']) in request.session['cart-data-obj']:
-            cart_data = request.session['cart_data_obj']
+    # if 'cart-data-obj' in request.session:
+    #     if str(request.GET['id']) in request.session['cart-data-obj']:
+    #         cart_data = request.session['cart_data_obj']
+    #         cart_data[str(request.GET['id'])]['qty'] = int(cart_dish[str(request.GET['id'])]['qty'])
+    #         cart_data.update(cart_data)
+    #         request.session['cart_data_obj'] = cart_data
+    #     else:
+    #         cart_data = request.session['cart_data_obj']
+    #         cart_data.update(cart_dish)
+    #         request.session['cart_data_obj'] = cart_data
+    # else:
+    #     request.session['cart_data_obj'] = cart_dish
+    if 'cart_data_obj' in request.session:
+        cart_data = request.session['cart_data_obj']
+
+        if str(request.GET['id']) in cart_data:
             cart_data[str(request.GET['id'])]['qty'] = int(cart_dish[str(request.GET['id'])]['qty'])
-            cart_data.update(cart_data)
-            request.session['cart_data_obj'] = cart_data
         else:
-            cart_data = request.session['cart_data_obj']
-            cart_data.update(cart_dish)
-            request.session['cart_data_obj'] = cart_data
+            cart_data[str(request.GET['id'])] = cart_dish[str(request.GET['id'])]
+
+        request.session['cart_data_obj'] = cart_data
     else:
         request.session['cart_data_obj'] = cart_dish
     return JsonResponse({"data": request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj'])})
+
+
+def cart_view(request):
+    cart_total_amount = 0
+    if 'cart_data_obj' in request.session:
+        for d_id, item in request.session['cart_data_obj'].items():
+            cart_total_amount += int(item['qty']) * float(item['price'].replace(',', '.'))
+        return render(request, "core/cart.html", {"cart_data": request.session['cart_data_obj'],
+                                                  'totalcartitems': len(request.session['cart_data_obj']),
+                                                  'cart_total_amount': cart_total_amount})
+    else:
+        messages.warning(request, "Your cart is empty")
+        return redirect("core:home")
 

@@ -37,7 +37,8 @@ $(".add-to-cart-btn").on("click", function(){
         success: function(response){
             this_val.html("Added to cart")
             console.log("Added!");
-            // $(".cart-items-count").text(response.totalcartitems)
+            $(".cart-items-count").text(response.totalcartitems)
+            console.log("result", response.totalcartitems);
         }
     })
 })

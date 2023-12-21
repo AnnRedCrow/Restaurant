@@ -8,5 +8,6 @@ urlpatterns = [
     path("dishes/", dishes_list_view, name="dishes_list"),
     path("category/", index, name="category_list"),
     path("category/<cid>", dishes_list_category_view, name="category-dishes-list"),
-    path("add-to-cart/", add_to_cart, name="add-to-cart")
+    path("add-to-cart/", add_to_cart, name="add-to-cart"),
+    path("cart/", cart_view, name="cart"),
 ]
