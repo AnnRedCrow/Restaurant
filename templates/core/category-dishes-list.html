@@ -7,7 +7,7 @@
 
     <div class="main-highlight">
         <div class="main-header">
-            <h2 class="main-title">Рекомендации</h2>
+            <h2 class="main-title">Рекомендации по категории {{ category.title }}</h2>
             <div class="main-arrow">
                 <ion-icon class="back" name="chevron-back-circle-outline"></ion-icon>
                 <ion-icon class="next" name="chevron-forward-circle-outline"></ion-icon>
@@ -15,37 +15,20 @@
         </div>
 
         <div class="highlight-wrapper">
-            <div class="highlight-card">
-                <img class="highlight-image" src="#">
-                <div class="highlight-desc">
-                    <h4>Fresh Salad</h4>
-                    <p>$42.5</p>
-                </div>
-            </div>
 
+        {% if recommended_in_category %}
+            {% for r in recommended_in_category %}
             <div class="highlight-card">
-                <img class="highlight-image" src="#">
+                <img class="highlight-image" src="{{r.photo.url}}">
                 <div class="highlight-desc">
-                    <h4>Fresh Salad</h4>
-                    <p>$42.5</p>
+                    <h4>{{r.title}}</h4>
+                    <p>{{r.price}}</p>
                 </div>
             </div>
-
-            <div class="highlight-card">
-                <img class="highlight-image" src="#">
-                <div class="highlight-desc">
-                    <h4>Fresh Salad</h4>
-                    <p>$42.5</p>
-                </div>
-            </div>
-
-            <div class="highlight-card">
-                <img class="highlight-image" src="#">
-                <div class="highlight-desc">
-                    <h4>Fresh Salad</h4>
-                    <p>$42.5</p>
-                </div>
-            </div>
+            {% endfor %}
+        {% else %}
+            <p>Рекомендации отсутствуют</p>
+        {% endif %}
 
         </div>
     </div>
@@ -83,15 +66,6 @@
 
                         </div>
                     </a>
-{#                    <div class="filter-card">#}
-{#                        <a href="{% url 'category' item.pk %}">#}
-{#                            <div class="filter-icon">#}
-{#                                <img src="{{ c.image.url }}" alt="Картинка не найдена">#}
-                                {#                        <ion-icon name="restaurant-outline"></ion-icon>#}
-{#                            </div>#}
-{#                            <p>{{ c.title }}</p>#}
-{#                        </a>#}
-{#                    </div>#}
 
 
                 {% endfor %}
@@ -112,7 +86,7 @@
                         <div class="detail-name">
                             <h4>{{ d.title }}</h4>
                             <p class="detail-sub">{{ d.description }}</p>
-                            <p class="price">${{ d.price }}</p>
+                            <p class="price current-dish-price-{{ d.id }}">{{ d.price }}</p>
                         </div>
 
                         <div class="add-cart">

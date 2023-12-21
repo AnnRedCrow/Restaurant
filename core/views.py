@@ -10,8 +10,11 @@ def index(request):
     # dishes = Dish.objects.all().order_by("category_id")
     dishes = Dish.objects.filter(is_published=True)
     categories = Category.objects.all()
+    recommended = Dish.objects.filter(is_published=True, is_recommended=True)
+
     context = {
         "dishes": dishes,
+        "recommended": recommended,
         "categories": categories,
     }
     return render(request, "core/index.html", context)
@@ -39,9 +42,11 @@ def dishes_list_category_view(request, cid):
     all_category = Category.objects.all()
     category = Category.objects.get(id=cid)
     dishes = Dish.objects.filter(is_published=True, category=category)
+    recommended = Dish.objects.filter(is_published=True, is_recommended=True, category=category)
 
     context = {
         "category": category,
+        "recommended_in_category": recommended,
         "all_category": all_category,
         "dishes": dishes,
     }

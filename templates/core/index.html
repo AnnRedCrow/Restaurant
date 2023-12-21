@@ -15,37 +15,16 @@
         </div>
 
         <div class="highlight-wrapper">
+            {% for r in recommended %}
             <div class="highlight-card">
-                <img class="highlight-image" src="#">
+                <img class="highlight-image" src="{{r.photo.url}}">
                 <div class="highlight-desc">
-                    <h4>Fresh Salad</h4>
-                    <p>$42.5</p>
+                    <h4>{{ r.title }}</h4>
+                    <p>{{ r.price }}</p>
                 </div>
             </div>
+            {% endfor %}
 
-            <div class="highlight-card">
-                <img class="highlight-image" src="#">
-                <div class="highlight-desc">
-                    <h4>Fresh Salad</h4>
-                    <p>$42.5</p>
-                </div>
-            </div>
-
-            <div class="highlight-card">
-                <img class="highlight-image" src="#">
-                <div class="highlight-desc">
-                    <h4>Fresh Salad</h4>
-                    <p>$42.5</p>
-                </div>
-            </div>
-
-            <div class="highlight-card">
-                <img class="highlight-image" src="#">
-                <div class="highlight-desc">
-                    <h4>Fresh Salad</h4>
-                    <p>$42.5</p>
-                </div>
-            </div>
 
         </div>
     </div>
