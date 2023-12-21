@@ -1,4 +1,5 @@
-$(".add-to-cart-btn").on("click", function(){
+$(document).ready(function (){
+    $(".add-to-cart-btn").on("click", function(){
 
     let this_val = $(this)
     let index_val = this_val.attr("data-index")
@@ -42,3 +43,29 @@ $(".add-to-cart-btn").on("click", function(){
         }
     })
 })
+
+
+    $(".delete-dish").on("click", function(){
+    let d_id = $(this).attr("data-dish")
+    let this_val = $(this)
+
+    console.log("Dish_id ", d_id);
+
+    $.ajax({
+        url: "/delete-from-cart",
+        data: {
+            "id": d_id
+        },
+        dataType: "json",
+        beforeSend: function(){
+            this_val.hide()
+        },
+        success: function(response){
+            this_val.show()
+            $(".cart-items-count").text(response.totalcartitems)
+            $("#cart-list").html(response.data)
+        }
+    })
+})
+})
+

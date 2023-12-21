@@ -1,0 +1,51 @@
+<div class="main" id="cart-list">
+{#    <div class="main-navbar">#}
+{#        <!-- menu for a mobile version of the website -->#}
+{#        <ion-icon class="menu-toggle" name="menu-outline"></ion-icon>#}
+{##}
+{#        <h1>Корзина</h1>#}
+{##}
+{#        <div class="profile">#}
+{#            <a class="cart" href="#"><ion-icon name="cart-outline"></ion-icon></a>#}
+{#            <a class="user" href="#"><ion-icon name="person-outline"></ion-icon></a>#}
+{#        </div>#}
+{#    </div>#}
+
+    <div class="users-cart" id="cart-list">
+
+        <div class="cart-wrapper">
+
+            {% for d_id, item in cart_data.items %}
+            <div class="cart-card">
+                <img src="{{ item.photo }}" alt="Картинка не найдена" class="mini-img">
+                <h4>{{ item.title }}</h4>
+                <p class="detail-sub">Lorem ipsum dolor sit amet consectetur provident</p>
+                <p class="price">${{ item.price }}</p>
+                <div class="count-items">
+                    <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    <span>{{ item.qty }}</span>
+                    <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                </div>
+
+                <button href="#" style="border:none; background: none" class="delete-dish" data-dish="{{ d_id }}"><ion-icon name="trash-outline" class="delete-icon"></ion-icon></button>
+
+            </div>
+            {% endfor %}
+
+
+            <div class="total-section">
+                <div class="total">
+                    <p>Итого: ${{ cart_total_amount }}</p>
+                </div>
+                {% if totalcartitems %}
+                <div class="checkout-button">
+                    <a href="#">Далее <ion-icon class="next" name="chevron-forward-circle-outline"></ion-icon></a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+
+
+    </div>
+</div>

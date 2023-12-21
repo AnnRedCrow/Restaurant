@@ -1,4 +1,6 @@
 from django.http import HttpResponse, JsonResponse
+from django.template.loader import render_to_string
+
 from core.models import *
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -93,4 +95,23 @@ def cart_view(request):
     else:
         messages.warning(request, "Your cart is empty")
         return redirect("core:home")
+
+
+def delete_item_from_cart(request):
+    d_id = str(request.GET['id'])
+    if 'cart_data_obj' in request.session:
+        if d_id in request.session['cart_data_obj']:
+            cart_data = request.session['cart_data_obj']
+            del request.session['cart_data_obj'][d_id]
+            request.session['cart_data_obj'] = cart_data
+
+    cart_total_amount = 0
+    if 'cart_data_obj' in request.session:
+        for d_id, item in request.session['cart_data_obj'].items():
+            cart_total_amount += int(item['qty']) * float(item['price'].replace(',', '.'))
+
+    context = render_to_string("core/async/cart-list.html", {"cart_data": request.session['cart_data_obj'],
+                                                              'totalcartitems': len(request.session['cart_data_obj']),
+                                                              'cart_total_amount': cart_total_amount})
+    return JsonResponse({"data": context, 'totalcartitems': len(request.session['cart_data_obj'])})
 
