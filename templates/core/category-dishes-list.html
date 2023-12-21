@@ -60,75 +60,42 @@
                 </div>
             </div>
             <div class="filter-wrapper">
-                <div class="filter-card">
-                    <div class="filter-icon">
-                        <ion-icon name="restaurant-outline"></ion-icon>
-                    </div>
-                    <p>All Menus</p>
-                </div>
-
-                {% for c in categories %}
-
+                <a href="{% url 'core:home'%}">
                     <div class="filter-card">
-{#                        <a href="{% url 'category' item.pk %}">#}
+                        <div class="filter-icon">
+                            <ion-icon name="restaurant-outline"></ion-icon>
+                        </div>
+                        <p>Всё</p>
+                    </div>
+                </a>
+
+
+                {% for c in all_category %}
+
+                    <a href="{% url 'core:category-dishes-list' c.pk %}">
+                        <div class="filter-card">
+
                             <div class="filter-icon">
                                 <img src="{{ c.image.url }}" alt="Картинка не найдена">
                                 {#                        <ion-icon name="restaurant-outline"></ion-icon>#}
                             </div>
                             <p>{{ c.title }}</p>
+
+                        </div>
+                    </a>
+{#                    <div class="filter-card">#}
+{#                        <a href="{% url 'category' item.pk %}">#}
+{#                            <div class="filter-icon">#}
+{#                                <img src="{{ c.image.url }}" alt="Картинка не найдена">#}
+                                {#                        <ion-icon name="restaurant-outline"></ion-icon>#}
+{#                            </div>#}
+{#                            <p>{{ c.title }}</p>#}
 {#                        </a>#}
-                    </div>
+{#                    </div>#}
+
 
                 {% endfor %}
 
-{#                <div class="filter-card">#}
-{#                    <div class="filter-icon">#}
-{#                        <ion-icon name="fast-food-outline"></ion-icon>#}
-{#                    </div>#}
-{#                    <p>Burger</p>#}
-{#                </div>#}
-{##}
-{#                <div class="filter-card">#}
-{#                    <div class="filter-icon">#}
-{#                        <ion-icon name="pizza-outline"></ion-icon>#}
-{#                    </div>#}
-{#                    <p>Pizza</p>#}
-{#                </div>#}
-{##}
-{#                <div class="filter-card">#}
-{#                    <div class="filter-icon">#}
-{#                        <ion-icon name="wine-outline"></ion-icon>#}
-{#                    </div>#}
-{#                    <p>Wine</p>#}
-{#                </div>#}
-{##}
-{#                <div class="filter-card">#}
-{#                    <div class="filter-icon">#}
-{#                        <ion-icon name="ice-cream-outline"></ion-icon>#}
-{#                    </div>#}
-{#                    <p>Ice-cream</p>#}
-{#                </div>#}
-{##}
-{#                <div class="filter-card">#}
-{#                    <div class="filter-icon">#}
-{#                        <ion-icon name="cafe-outline"></ion-icon>#}
-{#                    </div>#}
-{#                    <p>Coffee</p>#}
-{#                </div>#}
-{##}
-{#                <div class="filter-card">#}
-{#                    <div class="filter-icon">#}
-{#                        <ion-icon name="fish-outline"></ion-icon>#}
-{#                    </div>#}
-{#                    <p>Seafood</p>#}
-{#                </div>#}
-{##}
-{#                <div class="filter-card">#}
-{#                    <div class="filter-icon">#}
-{#                        <ion-icon name="nutrition-outline"></ion-icon>#}
-{#                    </div>#}
-{#                    <p>Healthy Food</p>#}
-{#                </div>#}
 
             </div>
         </div>
@@ -147,7 +114,17 @@
                             <p class="detail-sub">{{ d.description }}</p>
                             <p class="price">${{ d.price }}</p>
                         </div>
-                        <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+
+                        <div class="add-cart">
+                            <input type="hidden" value="1" name="" id="dish-quantity" class="dish-quantity-{{ d.id }}">
+                            <input type="hidden" class="dish-did-{{ d.id }}" value="{{ d.dish_id }}">
+                            <input type="hidden" class="dish-id-{{ d.id }}" value="{{ d.id }}">
+                            <input type="hidden" class="dish-photo-{{ d.id }}" value="{{ d.photo.url }}">
+                            <input type="hidden" class="dish-title-{{ d.id }}" value="{{ d.title }}">
+{#                            <input type="hidden" class="dish-price-{{ d.id }}" value="{{ d.price }}">#}
+                            <button href="cart.html" data-index="{{ d.id }}" class="btn btn-primary add add-to-cart-btn" id="add-to-cart-btn">Добавить</button>
+                        </div>
+
                     </div>
                 </div>
                 {% endfor %}

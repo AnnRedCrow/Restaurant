@@ -60,12 +60,15 @@
                 </div>
             </div>
             <div class="filter-wrapper">
-                <div class="filter-card">
-                    <div class="filter-icon">
-                        <ion-icon name="restaurant-outline"></ion-icon>
+                <a href="{% url 'core:home'%}">
+                    <div class="filter-card">
+                        <div class="filter-icon">
+                            <ion-icon name="restaurant-outline"></ion-icon>
+                        </div>
+                        <p>Всё</p>
                     </div>
-                    <p>All Menus</p>
-                </div>
+                </a>
+
 
                 {% for c in categories %}
                     <a href="{% url 'core:category-dishes-list' c.pk %}">

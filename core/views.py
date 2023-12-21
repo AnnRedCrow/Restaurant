@@ -36,11 +36,13 @@ def category_list_view(request):
 
 
 def dishes_list_category_view(request, cid):
+    all_category = Category.objects.all()
     category = Category.objects.get(id=cid)
     dishes = Dish.objects.filter(is_published=True, category=category)
 
     context = {
         "category": category,
+        "all_category": all_category,
         "dishes": dishes,
     }
 
