@@ -44,34 +44,24 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body p-4">
-                                    <h6>Information</h6>
+                                    <h6>Информация</h6>
                                     <hr class="mt-0 mb-4">
                                     <div class="row pt-1">
                                         <div class="col-6 mb-3">
-                                            <h6>Email</h6>
+                                            <h6>Почта</h6>
                                             <p class="text-muted">{{ user.email }}</p>
                                         </div>
                                         <div class="col-6 mb-3">
-                                            <h6>Phone</h6>
+                                            <h6>Телефон</h6>
                                             <p class="text-muted">123 456 789</p>
                                         </div>
-                                        <div class="col-6 mb-3">
-                                            <h6>Phone</h6>
-                                            <p class="text-muted">123 456 789</p>
-                                        </div>
+{#                                        <div class="col-6 mb-3">#}
+{#                                            <h6>Phone</h6>#}
+{#                                            <p class="text-muted">123 456 789</p>#}
+{#                                        </div>#}
                                     </div>
-                                    <h6>Projects</h6>
-                                    <hr class="mt-0 mb-4">
-{#                                    <div class="row pt-1">#}
-{#                                        <div class="col-6 mb-3">#}
-{#                                            <h6>Recent</h6>#}
-{#                                            <p class="text-muted">Lorem ipsum</p>#}
-{#                                        </div>#}
-{#                                        <div class="col-6 mb-3">#}
-{#                                            <h6>Most Viewed</h6>#}
-{#                                            <p class="text-muted">Dolor sit amet</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
+{#                                    <h6>Projects</h6>#}
+{#                                    <hr class="mt-0 mb-4">#}
                                 </div>
                             </div>
                         </div>
@@ -79,6 +69,8 @@
                 </div>
             </div>
         </div>
+
+        <a href="{% url "userauths:logout" %}" class="btn btn-primary" style="margin-left: 10px">Выйти из аккаунта</a>
 
     </div>
 {% endblock %}
