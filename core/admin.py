@@ -11,7 +11,8 @@ class DishAdmin(admin.ModelAdmin):
 
 
 class CartOrderAdmin(admin.ModelAdmin):
-    list_display = ['user', 'price', 'paid_status', 'order_date']
+    list_editable = ['paid_status', 'status']
+    list_display = ['user', 'price', 'paid_status', 'status', 'order_date']
 
 
 class CartOrderItemsAdmin(admin.ModelAdmin):

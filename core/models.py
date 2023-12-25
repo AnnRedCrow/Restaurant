@@ -85,6 +85,9 @@ class CartOrderItems(models.Model):
         verbose_name = "Позиция заказа"
         verbose_name_plural = "Позиции заказа"
 
+    def category_image(self):
+        return mark_safe('<img src="%s" width="50" height="50"/>' % (self.image.url))
+
     def order_image(self):
         return mark_safe('<img src="/media/%s" width="50" height="50"/>' % (self.image))
 

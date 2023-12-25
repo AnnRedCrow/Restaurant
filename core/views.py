@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
 from django.template.loader import render_to_string
 
@@ -123,11 +124,33 @@ def delete_item_from_cart(request):
     return JsonResponse({"data": context, 'totalcartitems': len(request.session['cart_data_obj'])})
 
 
+@login_required
 def checkout_view(request):
     cart_total_amount = 0
+    total_amount = 0
+
     if 'cart_data_obj' in request.session:
         for d_id, item in request.session['cart_data_obj'].items():
+            total_amount += int(item['qty']) * float(item['price'].replace(',', '.'))
+
+        order = CartOrder.objects.create(
+            user=request.user,
+            price=total_amount
+        )
+
+        for d_id, item in request.session['cart_data_obj'].items():
             cart_total_amount += int(item['qty']) * float(item['price'].replace(',', '.'))
+
+            cart_order_items = CartOrderItems.objects.create(
+                order=order,
+                invoice="INVOICE_NO-" + str(order.id),
+                item=item['title'],
+                image=item['photo'],
+                quantity=item['qty'],
+                price=item['price'].replace(',', '.'),
+                total=int(item['qty']) * float(item['price'].replace(',', '.'))
+            )
+
 
         return render(request, "core/checkout.html", {"cart_data": request.session['cart_data_obj'],
                                                   'totalcartitems': len(request.session['cart_data_obj']),
