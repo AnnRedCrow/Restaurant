@@ -122,3 +122,13 @@ def delete_item_from_cart(request):
                                                               'cart_total_amount': cart_total_amount})
     return JsonResponse({"data": context, 'totalcartitems': len(request.session['cart_data_obj'])})
 
+
+def checkout_view(request):
+    cart_total_amount = 0
+    if 'cart_data_obj' in request.session:
+        for d_id, item in request.session['cart_data_obj'].items():
+            cart_total_amount += int(item['qty']) * float(item['price'].replace(',', '.'))
+
+        return render(request, "core/checkout.html", {"cart_data": request.session['cart_data_obj'],
+                                                  'totalcartitems': len(request.session['cart_data_obj']),
+                                                  'cart_total_amount': cart_total_amount})
