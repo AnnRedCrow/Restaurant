@@ -155,3 +155,20 @@ def checkout_view(request):
         return render(request, "core/checkout.html", {"cart_data": request.session['cart_data_obj'],
                                                   'totalcartitems': len(request.session['cart_data_obj']),
                                                   'cart_total_amount': cart_total_amount})
+
+
+def customer_dashboard(request):
+    orders = CartOrder.objects.filter(user=request.user).order_by("-id")
+    context = {
+        "orders": orders
+    }
+    return render(request, 'core/dashboard.html', context)
+
+
+def order_detail(request, id):
+    order = CartOrder.objects.get(user=request.user, id=id)
+    order_items = CartOrderItems.objects.filter(order=order)
+    context = {
+        "order_items": order_items
+    }
+    return render(request, 'core/order-detail.html', context)

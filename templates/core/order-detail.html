@@ -1,0 +1,36 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="main">
+
+        <table class="table table-borderless">
+            <thead>
+            <tr>
+                <th scope="col">Номер</th>
+                <th scope="col">Фото</th>
+                <th scope="col">Название</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Количество</th>
+                <th scope="col">Всего</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for d in order_items %}
+            <tr>
+                <th scope="row">INV-{{ d.id }}</th>
+                <th scope="row">
+                    <p><img src="{{ d.image }}" style="width:60px; height:60px; object-fit: cover" alt="Картинка не найдена"></p>
+                </th>
+                <th scope="row">{{ d.item }}</th>
+                <th scope="row">{{ d.price }}</th>
+                <th scope="row">{{ d.quantity }}</th>
+                <th scope="row">{{ d.total }}</th>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

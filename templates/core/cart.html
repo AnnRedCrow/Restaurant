@@ -25,7 +25,7 @@
                     <img src="{{ item.photo }}" alt="Картинка не найдена" class="mini-img">
                     <h4>{{ item.title }}</h4>
                     <p class="detail-sub">Lorem ipsum dolor sit amet consectetur provident</p>
-                    <p class="price">${{ item.price }}</p>
+                    <p class="price">{{ item.price }}₽</p>
                     <div class="count-items">
                         <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
                         <span>{{ item.qty }}</span>
@@ -40,7 +40,7 @@
 
                 <div class="total-section">
                     <div class="total">
-                        <p>Итого: ${{ cart_total_amount }}</p>
+                        <p>Итого: {{ cart_total_amount }}₽</p>
                     </div>
                     {% if totalcartitems %}
                         <div class="checkout-button">
