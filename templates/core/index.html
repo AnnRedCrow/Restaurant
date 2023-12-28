@@ -2,8 +2,6 @@
 
 
 {% block content %}
-<div class="main">
-    {% include "inc/top.html" %}
 
     <div class="main-highlight">
         <div class="main-header">
@@ -39,7 +37,7 @@
                 </div>
             </div>
             <div class="filter-wrapper">
-                <a href="{% url 'core:home'%}">
+                <a style="text-decoration: none" href="{% url 'core:home'%}">
                     <div class="filter-card">
                         <div class="filter-icon">
                             <ion-icon name="restaurant-outline"></ion-icon>
@@ -50,12 +48,11 @@
 
 
                 {% for c in categories %}
-                    <a href="{% url 'core:category-dishes-list' c.pk %}">
+                    <a style="text-decoration: none" href="{% url 'core:category-dishes-list' c.pk %}">
                         <div class="filter-card">
 
                             <div class="filter-icon">
                                 <img src="{{ c.image.url }}" alt="Картинка не найдена">
-                                {#                        <ion-icon name="restaurant-outline"></ion-icon>#}
                             </div>
                             <p>{{ c.title }}</p>
 
@@ -98,7 +95,7 @@
             </div>
         </div>
     </div>
-</div>
+
 
 
 {% endblock content %}

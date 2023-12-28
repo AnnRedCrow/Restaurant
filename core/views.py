@@ -101,7 +101,7 @@ def cart_view(request):
                                                   'totalcartitems': len(request.session['cart_data_obj']),
                                                   'cart_total_amount': cart_total_amount})
     else:
-        messages.warning(request, "Your cart is empty")
+        messages.warning(request, "Ваша корзина пуста, выберите позиции из меню")
         return redirect("core:home")
 
 
