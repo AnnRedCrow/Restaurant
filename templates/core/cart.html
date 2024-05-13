@@ -12,12 +12,17 @@
                     <img src="{{ item.photo }}" alt="Картинка не найдена" class="mini-img">
                     <h4>{{ item.title }}</h4>
                     <p class="detail-sub">Lorem ipsum dolor sit amet consectetur provident</p>
-                    <p class="price">{{ item.price }}₽</p>
+
                     <div class="count-items">
                         <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
                         <span>{{ item.qty }}</span>
                         <ion-icon name="add-outline" class="add-icon"></ion-icon>
                     </div>
+
+
+                    <p class="price">{{ item.price }}₽</p>
+
+                    <button href="#" style="border:none; background: none" class="update-dish" data-dish="{{ d_id }}"><ion-icon name="refresh" class="refresh-icon"></ion-icon></button>
 
                     <button href="#" style="border:none; background: none" class="delete-dish" data-dish="{{ d_id }}">
                         <ion-icon name="trash-outline" class="delete-icon"></ion-icon>

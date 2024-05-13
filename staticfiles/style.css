@@ -392,7 +392,8 @@ body {
     margin: 0 5px;
 }
 
-.delete-icon {
+.delete-icon,
+.refresh-icon {
     font-size: 20px;
     cursor: pointer;
 }
@@ -439,13 +440,11 @@ body {
 
 
 
-.main-profile {
-    width: 100%;
-    height: max-content;
-    min-height: 100vh;
-    padding: 2%;
-    background-color: var(--softGreenColor);
-    margin-left: 250px;
+.gradient-custom {
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/*background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))*/
+
+    background-color: var(--secondaryColor);
 }
 
 

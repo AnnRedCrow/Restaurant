@@ -392,7 +392,8 @@ body {
     margin: 0 5px;
 }
 
-.delete-icon {
+.delete-icon,
+.refresh-icon {
     font-size: 20px;
     cursor: pointer;
 }
